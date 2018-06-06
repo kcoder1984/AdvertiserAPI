@@ -56,8 +56,8 @@ public class AdvertiserApiController extends AbstractRestHandler {
 	
 	 @RequestMapping(value = "/{id}",
 	            method = RequestMethod.PUT,
-	            consumes = {"application/json", "application/xml"},
-	            produces = {"application/json", "application/xml"})
+	            consumes =  MediaType.APPLICATION_JSON_VALUE,
+	            produces =  MediaType.APPLICATION_JSON_VALUE)
 	    @ResponseStatus(HttpStatus.NO_CONTENT)
 	    @ApiOperation(value = "Update a advertiser resource.", notes = "You have to provide a valid advertiser ID in the URL and in the payload. The ID attribute can not be updated.")
 	public void updateAdvertiser(@ApiParam(value = "The ID of the existing advertiser resource.", required = true) @PathVariable("id") Long id, @RequestBody Advertiser advertiser) {
@@ -69,9 +69,7 @@ public class AdvertiserApiController extends AbstractRestHandler {
 		this.advertiserService.updateAdvertiser(advertiser);
 	}
 	
-	 @RequestMapping(value = "/{id}",
-	            method = RequestMethod.DELETE,
-	            produces = {"application/json", "application/xml"})
+	 @RequestMapping(value = "/{id}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
 	 @ResponseStatus(HttpStatus.NO_CONTENT)
 	 @ApiOperation(value = "Delete a advertiser resource.", notes = "You have to provide a valid advertiser ID in the URL. Once deleted the resource can not be recovered.")
 	public void deleteAdvertiser(@ApiParam(value = "The ID of the existing advertiser resource.", required = true)@PathVariable("id") Long id){
@@ -87,17 +85,15 @@ public class AdvertiserApiController extends AbstractRestHandler {
 	public boolean checkCredit(@ApiParam(value = "The ID of the existing advertiser resource.", required = true)@PathVariable("id") Long id,
 			@ApiParam(value = "The transaction value.", required = true)@PathVariable("transactionValue") BigDecimal value) {
         
-		Advertiser advertiser = this.advertiserService.getAdvertiser(id).get();
+		Optional<Advertiser> advertiser = this.advertiserService.getAdvertiser(id);
+		checkResourceFound(advertiser);
 		
-		if(advertiser == null) throw new ResourceNotFoundException("Resource not found.");
+		if(advertiser.isPresent()){
+			return this.advertiserService.validateAdvertiser(advertiser.get().getCreditLimit(), value);
+		}
 		
-		return this.advertiserService.validateAdvertiser(advertiser.getCreditLimit(), value);
+		return false;
 	}
 	
-	public static <T> T checkResourceFound(final Optional<T> resource) {
-		if (!resource.isPresent()) {
-			throw new ResourceNotFoundException("resource not found");
-		}
-		return resource.get();
-	}
+	
 }

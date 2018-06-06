@@ -1,5 +1,7 @@
 package com.media.advertiserapi.rest;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -24,7 +26,7 @@ public class AbstractRestHandler {
     public @ResponseBody
     RestError handleDataStoreException(DataFormatException ex, WebRequest request, HttpServletResponse response) {
         log.info("Converting Data Store exception to RestResponse : " + ex.getMessage());
-        return new RestError(ex, "You messed up.");
+        return new RestError(ex, "Something wrong with the data.");
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -33,6 +35,13 @@ public class AbstractRestHandler {
     @ResponseBody
     RestError handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request, HttpServletResponse response) {
         log.info("ResourceNotFoundException handler:" + ex.getMessage());
-        return new RestError(ex, "Sorry I couldn't find it.");
+        return new RestError(ex, "Sorry couldn't find it.");
     }
+    
+    public static <T> T checkResourceFound(final Optional<T> resource) {
+		if (!resource.isPresent()) {
+			throw new ResourceNotFoundException("resource not found");
+		}
+		return resource.get();
+	}
 }

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.media.advertiserapi.exception.DataFormatException;
-import com.media.advertiserapi.exception.ResourceNotFoundException;
 import com.media.advertiserapi.model.Advertiser;
 import com.media.advertiserapi.service.AdvertiserService;
 

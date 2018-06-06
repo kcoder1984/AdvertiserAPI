@@ -2,13 +2,48 @@ package com.media.advertiserapi.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@Entity
+@Table(name = "advertiser")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Advertiser {
 
+	@Id
+	@GeneratedValue()
+	private long id;
 	
+	@Column(nullable = false)
 	String advertiserName;
+	
+	@Column()
 	String contactFirstName;
+	@Column()
 	String contactLastName;
+	@Column()
 	BigDecimal creditLimit;
+	
+	
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
 	/**
 	 * @return the advertiserName
 	 */

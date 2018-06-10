@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 /**
  * This is the main Spring Boot application
  * 
@@ -15,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication
 @Configuration
 @EnableAutoConfiguration
+@EnableSwagger2
 @ComponentScan(basePackages = "com.media.advertiserapi")
 public class Application {
 	private static final Class<Application> applicationClass = Application.class;

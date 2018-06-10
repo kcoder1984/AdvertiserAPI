@@ -3,6 +3,8 @@ package com.media.advertiserapi.rest;
 import java.math.BigDecimal;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,11 +20,13 @@ import com.media.advertiserapi.exception.DataFormatException;
 import com.media.advertiserapi.model.Advertiser;
 import com.media.advertiserapi.service.AdvertiserService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
-@RestController
+@RestController	
 @RequestMapping(value="/api/advertiser")
+@Api(tags = {"Advertiser"})
 public class AdvertiserApiController extends AbstractRestHandler {
 	
 	@Autowired
@@ -43,8 +47,8 @@ public class AdvertiserApiController extends AbstractRestHandler {
 			produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get single advertiser.", notes = "You have to provide a valid advertiser ID.")
-    @ResponseBody
-	public Advertiser getAdvertiser(@ApiParam(value = "The ID of Advertiser.", required = true)@PathVariable("id") Long id){
+	@ResponseBody
+	public Advertiser getAdvertiser(@ApiParam(value = "The ID of Advertiser.", required = true)@PathVariable("id") Long id, HttpServletResponse response){
 		
 		Optional<Advertiser> advertiser = this.advertiserService.getAdvertiser(id); 
 		

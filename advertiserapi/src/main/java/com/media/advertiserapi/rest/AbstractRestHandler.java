@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +18,7 @@ import com.media.advertiserapi.exception.ResourceNotFoundException;
 import com.media.advertiserapi.model.RestError;
 
 
-public class AbstractRestHandler {
+public class AbstractRestHandler extends SpringBootServletInitializer {
 
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
     

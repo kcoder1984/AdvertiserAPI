@@ -17,11 +17,11 @@ This application is packaged as a jar which has Tomcat 8 embedded. No Tomcat or 
 
 ## About the Service
 
-The service is just a simple advertiser REST service. It uses an in-memory database (H2) to store the data. You can call some REST endpoints defined in ```com.media.advertiserapi.rest``` on **port 8080**. (see below)
+The service is just a advertiser CRUD REST service. It uses an in-memory database (H2) to store the data. You can call some REST endpoints defined in ```com.media.advertiserapi.rest``` on **port 8080**. They are exposed through swagger
+
+http://localhost:8080/swagger-ui.html#/
 
 Actuator endpoints are running on **port 8090**. They are not exposed through swagger.
-
-Here are some endpoints you can call:
 
 ### Get information about system health, configurations, etc.
 

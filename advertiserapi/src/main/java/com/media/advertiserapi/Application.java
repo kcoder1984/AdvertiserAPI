@@ -16,7 +16,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication
 @Configuration
-@EnableAutoConfiguration
 @EnableSwagger2
 @ComponentScan(basePackages = "com.media.advertiserapi")
 public class Application {

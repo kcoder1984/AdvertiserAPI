@@ -14,7 +14,7 @@ This application is packaged as a jar which has Tomcat 8 embedded. No Tomcat or 
         java -jar ./target/advertiserapi-0.0.1-SNAPSHOT.jar
 
 ```
-
+* On explorer : http://localhost:8080/swagger-ui.html#/Advertiser
 ## About the Service
 
 The service is just a simple advertiser REST service. It uses an in-memory database (H2) to store the data. You can call some REST endpoints defined in ```com.media.advertiserapi.rest``` on **port 8080**. (see below)

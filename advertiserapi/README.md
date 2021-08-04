@@ -11,9 +11,9 @@ This application is packaged as a jar which has Tomcat 8 embedded. No Tomcat or 
 * Clone this repository 
 * Make sure you are using JDK 1.8 and Maven 3.x
 * You can build the project and run the tests by running ```mvn clean package```
-* Once successfully built, you can run the service by one of these two methods:
+* Once successfully built, you can run the service as follows:
 ```
-        java -jar ./target/advertiserapi-0.0.1-SNAPSHOT.jar
+        docker-compose up
 
 ```
 * On explorer : http://localhost:8080/swagger-ui.html#/Advertiser

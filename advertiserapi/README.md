@@ -6,8 +6,6 @@ This is a Java / Maven / Spring Boot application that can be used as a starter f
 
 This application is packaged as a jar which has Tomcat 8 embedded. No Tomcat or JBoss installation is necessary. You run it using the ```java -jar``` command.
 
-//TODO add docker file and docker compose for testing 
-
 * Clone this repository 
 * Make sure you are using JDK 1.8 and Maven 3.x
 * You can build the project and run the tests by running ```mvn clean package```

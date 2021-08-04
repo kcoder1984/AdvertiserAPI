@@ -13,8 +13,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "advertiser")
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Advertiser {
 
 	@Id

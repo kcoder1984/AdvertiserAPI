@@ -1,0 +1,12 @@
+FROM openjdk:8-jdk-alpine
+
+ENV JAVA_HEAP_OPTIONS="-Xms512m -Xmx512m"
+ENV JAVA_GC_OPTIONS="-XX:+UseG1GC"
+ENV JAVA_GC_LOGGING_OPTIONS=""
+ENV JAVA_EXTRA_OPTIONS=""
+
+EXPOSE 8080
+#WORKDIR /opt
+
+COPY target/advertiserapi-*-SNAPSHOT.jar /opt/advertiser-api.jar
+CMD java ${JAVA_HEAP_OPTIONS} ${JAVA_GC_OPTIONS} ${JAVA_GC_LOGGING_OPTIONS} ${JAVA_EXTRA_OPTIONS} -jar /opt/advertiser-api.jar
